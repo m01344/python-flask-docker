@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   
 env:
-  REGISTRY_NAME: my-registry-name
+  REGISTRY_NAME: unipertestregistry
   APP_NAME: python-flask
 
 jobs:
