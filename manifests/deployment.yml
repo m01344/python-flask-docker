@@ -19,6 +19,5 @@ spec:
       containers:
       - name: flask
         image: uniper.azurecr.io/python-flask
-        - name:  http
-          containerPort: 8080
-          protocol: TCP
+        containerPort: 8080
+        protocol: TCP
