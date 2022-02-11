@@ -18,8 +18,7 @@ spec:
     spec:
       containers:
       - name: flask
-        image: ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
-        ports:
+        image: uniper.azurecr.io/python-flask
         - name:  http
           containerPort: 8080
           protocol: TCP
