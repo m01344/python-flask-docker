@@ -18,8 +18,7 @@ spec:
     spec:
       containers:
       - name: flask
-        #image: unipertestregistry.azurecr.io/python-flask
-        image: ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
+        image: unipertestregistry.azurecr.io/python-flask
         ports:
         - name:  http
           containerPort: 8080
