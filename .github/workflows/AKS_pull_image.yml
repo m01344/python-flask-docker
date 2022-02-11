@@ -7,7 +7,7 @@ env:
   REGISTRY_NAME: unipertestregistry
   CLUSTER_NAME: cmcaks-poc-001
   CLUSTER_RESOURCE_GROUP: cmcaks-paas-poc-rgp-001
-  NAMESPACE: python-flask
+  NAMESPACE: default
   APP_NAME: python-flask
   
 jobs:
