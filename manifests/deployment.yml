@@ -18,11 +18,7 @@ spec:
     spec:
       containers:
       - name: flask
-        image: uniper.azurecr.io/python-flask
         ports:
         - name:  http
           containerPort: 8080
-          protocol: TCP
-      imagePullSecrets:
-      - name: unipertestregistry-registry-connection
-   
+          protocol: TCP   
