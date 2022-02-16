@@ -25,7 +25,8 @@ jobs:
         password: ${{ secrets.ACR_PASSWORD }}
     
     # Set the target Azure Kubernetes Service (AKS) cluster. 
-    - uses: azure/aks-set-context@v1
+    #- uses: azure/aks-set-context@v1
+    - uses: azure/k8s-actions/k8s-set-context@master
       with:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
         #creds: '${{ secrets.AZURE_CREDENTIALS }}'
