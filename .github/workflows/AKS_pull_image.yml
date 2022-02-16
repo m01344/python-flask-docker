@@ -30,11 +30,14 @@ jobs:
         creds: '${{ secrets.AZURE_CREDENTIALS }}'
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+        
+    - run: |  
+        kubectl config current-context
     
-    #- uses: azure/k8s-set-context@v1
-      #with:
-        #kubeconfig: ${{ secrets.KUBE_CONFIG }}
-    
+    - uses: azure/k8s-set-context@v1
+      with:
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        
     # Create namespace if doesn't exist
     - run: |
         kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
