@@ -31,9 +31,9 @@ jobs:
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     
-    - uses: azure/k8s-set-context@v1
-      with:
-        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+    #- uses: azure/k8s-set-context@v1
+      #with:
+        #kubeconfig: ${{ secrets.KUBE_CONFIG }}
     
     # Create namespace if doesn't exist
     - run: |
