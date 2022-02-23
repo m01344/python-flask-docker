@@ -27,6 +27,11 @@ stages:
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+    
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'docker images'
 
     - task: Docker@2
       inputs:
