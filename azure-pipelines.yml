@@ -23,7 +23,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'Test'
-        repository: 'python-test'
+        repository: 'nariveli/python-test'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
     
