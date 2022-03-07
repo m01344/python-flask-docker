@@ -35,9 +35,15 @@ jobs:
         #cluster-name: ${{ env.CLUSTER_NAME }}
         #resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
         
-    #- run: |  
-    #    kubectl config current-context
-    
+    - run: |
+        kubectl config get-contexts
+        
+    - run: |
+        kubectl config set-context python-flask --user=namespace-admin --cluster=${{ env.CLUSTER_NAME }} --namespace=${{ env.NAMESPACE }
+        kubectl config use-context python-flask
+        
+    - run: |
+        kubectl config get-contexts    
      
     # Create namespace if doesn't exist
     #- run: |
