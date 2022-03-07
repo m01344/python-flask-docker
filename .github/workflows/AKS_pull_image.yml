@@ -23,6 +23,10 @@ jobs:
         login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
         username: ${{ secrets.ACR_USERNAME }} 
         password: ${{ secrets.ACR_PASSWORD }}
+        
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     
     # Set the target Azure Kubernetes Service (AKS) cluster. 
     - uses: azure/aks-set-context@v1
