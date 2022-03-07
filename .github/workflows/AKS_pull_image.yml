@@ -29,11 +29,17 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
     # Set the target Azure Kubernetes Service (AKS) cluster. 
-    - uses: azure/aks-set-context@v1
+    #- uses: azure/aks-set-context@v1
+      #with:
+        #creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        #cluster-name: ${{ env.CLUSTER_NAME }}
+        #resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+        
+    - uses: azure/k8s-set-context@v2
       with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        cluster-name: ${{ env.CLUSTER_NAME }}
-        resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+        method: kubeconfig
+        kubeconfig: ${{ secrets.AZURE_KUBECONFIG }}
+        context: cmcaks-poc-001-admin
         
     #- run: |
         #kubectl config set-context python-flask --user=namespace-admin --cluster=cmcaks-poc-001 --namespace=python-flask
