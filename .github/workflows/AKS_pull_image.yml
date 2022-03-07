@@ -46,7 +46,7 @@ jobs:
         kubectl config get-contexts  
     
     - run: |
-        kubectl config current-context
+        kubectl config view
      
     # Create namespace if doesn't exist
     #- run: |
