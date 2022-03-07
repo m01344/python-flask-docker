@@ -29,18 +29,15 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
     # Set the target Azure Kubernetes Service (AKS) cluster. 
-    #- uses: azure/aks-set-context@v1
-      #with:
-        #creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        #cluster-name: ${{ env.CLUSTER_NAME }}
-        #resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+    - uses: azure/aks-set-context@v1
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        cluster-name: ${{ env.CLUSTER_NAME }}
+        resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
         
-    - run: |
-        kubectl config get-contexts
-        
-    - run: |
-        kubectl config set-context python-flask --user=namespace-admin --cluster=cmcaks-poc-001 --namespace=python-flask
-        kubectl config use-context python-flask
+    #- run: |
+        #kubectl config set-context python-flask --user=namespace-admin --cluster=cmcaks-poc-001 --namespace=python-flask
+        #kubectl config use-context python-flask
         
     - run: |
         kubectl config get-contexts  
@@ -62,13 +59,13 @@ jobs:
         namespace: ${{ env.NAMESPACE }}
     
     # Deploy app to AKS
-    - uses: azure/k8s-deploy@v1
-      with:
-        manifests: |
-          manifests/service.yml
-          manifests/deployment.yml
-        #images: |
-          #${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
-        imagepullsecrets: |
-          ${{ env.REGISTRY_NAME }}-registry-connection
-        namespace: ${{ env.NAMESPACE }}
+    #- uses: azure/k8s-deploy@v1
+      #with:
+        #manifests: |
+          #manifests/service.yml
+          #manifests/deployment.yml
+        ##images: |
+          ##${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
+        #imagepullsecrets: |
+          #${{ env.REGISTRY_NAME }}-registry-connection
+        #namespace: ${{ env.NAMESPACE }}
