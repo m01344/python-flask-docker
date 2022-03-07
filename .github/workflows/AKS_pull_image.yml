@@ -23,39 +23,19 @@ jobs:
         login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
         username: ${{ secrets.ACR_USERNAME }} 
         password: ${{ secrets.ACR_PASSWORD }}
-        
+    
+    # Login to Azure
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    # Set the target Azure Kubernetes Service (AKS) cluster. 
-    #- uses: azure/aks-set-context@v1
-      #with:
-        #creds: '${{ secrets.AZURE_CREDENTIALS }}'
-        #cluster-name: ${{ env.CLUSTER_NAME }}
-        #resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
-        
+    # Set the target Azure Kubernetes Service (AKS) cluster
     - uses: azure/k8s-set-context@v2
       with:
         method: kubeconfig
         kubeconfig: ${{ secrets.AZURE_KUBECONFIG }}
         context: python-flask
         
-    #- run: |
-        #kubectl config set-context python-flask --user=namespace-admin --cluster=cmcaks-poc-001 --namespace=python-flask
-        #kubectl config set-credentials python-flask --username=nsadmin --password=password
-        #kubectl config use-context python-flask
-        
-    - run: |
-        kubectl config get-contexts  
-    
-    - run: |
-        kubectl config view
-     
-    # Create namespace if doesn't exist
-    #- run: |
-    #    kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
-    
     # Create imagepullsecret for Azure Container registry (ACR)
     - uses: azure/k8s-create-secret@v1
       with:
@@ -66,13 +46,13 @@ jobs:
         namespace: ${{ env.NAMESPACE }}
     
     # Deploy app to AKS
-    #- uses: azure/k8s-deploy@v1
-      #with:
-        #manifests: |
-          #manifests/service.yml
-          #manifests/deployment.yml
-        ##images: |
-          ##${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
-        #imagepullsecrets: |
-          #${{ env.REGISTRY_NAME }}-registry-connection
-        #namespace: ${{ env.NAMESPACE }}
+    - uses: azure/k8s-deploy@v1
+      with:
+        manifests: |
+          manifests/service.yml
+          manifests/deployment.yml
+        #images: |
+          #${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
+        imagepullsecrets: |
+          ${{ env.REGISTRY_NAME }}-registry-connection
+        namespace: ${{ env.NAMESPACE }}
