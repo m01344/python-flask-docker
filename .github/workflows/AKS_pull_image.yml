@@ -39,7 +39,7 @@ jobs:
       with:
         method: kubeconfig
         kubeconfig: ${{ secrets.AZURE_KUBECONFIG }}
-        context: cmcaks-poc-001-admin
+        context: python-flask
         
     #- run: |
         #kubectl config set-context python-flask --user=namespace-admin --cluster=cmcaks-poc-001 --namespace=python-flask
