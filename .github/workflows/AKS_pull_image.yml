@@ -43,7 +43,10 @@ jobs:
         kubectl config use-context python-flask
         
     - run: |
-        kubectl config get-contexts    
+        kubectl config get-contexts  
+    
+    - run: |
+        kubectl config current-context
      
     # Create namespace if doesn't exist
     #- run: |
