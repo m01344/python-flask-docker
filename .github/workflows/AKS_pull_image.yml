@@ -8,7 +8,7 @@ env:
   CLUSTER_NAME: cmcaks-poc-001
   CLUSTER_RESOURCE_GROUP: cmcaks-paas-poc-rgp-001
   NAMESPACE: python-flask
-  APP_NAME: python-flask
+  APP_NAME: python-flask:latest
   
 jobs:
   pull:
@@ -51,7 +51,7 @@ jobs:
     - uses: azure/k8s-deploy@v1
       with:
         manifests: |
-          manifests/service.yml
+          envsubst < manifests/service.yml
           manifests/deployment.yml
         #images: |
           #${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
