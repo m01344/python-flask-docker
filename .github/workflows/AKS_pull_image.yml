@@ -55,6 +55,6 @@ jobs:
           manifests/deployment.yml
         #images: |
           #${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
-        imagepullsecrets: |
-          ${{ env.REGISTRY_NAME }}-registry-connection
+        #imagepullsecrets: |
+          #${{ env.REGISTRY_NAME }}-registry-connection
         namespace: ${{ env.NAMESPACE }}
