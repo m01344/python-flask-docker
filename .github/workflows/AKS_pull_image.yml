@@ -46,13 +46,16 @@ jobs:
         #container-registry-password: ${{ secrets.ACR_PASSWORD }}
         #secret-name: ${{ env.REGISTRY_NAME }}-registry-connection
         #namespace: ${{ env.NAMESPACE }}
+    - name: run shell
+      run: |
+        envsubst < manifests/service.yml | kubectl apply -f -
     
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
       with:
         manifests: |
-          envsubst < manifests/service.yml
-          manifests/deployment.yml
+          manifests/service.yml
+        #manifests/deployment.yml
         #images: |
           #${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:latest
         #imagepullsecrets: |
