@@ -48,7 +48,7 @@ jobs:
         #namespace: ${{ env.NAMESPACE }}
     - name: run shell
       run: |
-        envsubst < manifests/service.yml | kubectl apply -f -n ${{ env.NAMESPACE }} -
+        envsubst < manifests/service.yml | kubectl apply -n ${{ env.NAMESPACE }} -f -
     
     # Deploy app to AKS
     - uses: azure/k8s-deploy@v1
